@@ -4,6 +4,23 @@
 
 **MyGarage** é um gerenciador de garagem/oficina. É o projeto portfólio definitivo do Isac para conseguir uma vaga como desenvolvedor Java. O objetivo é aprender o MÁXIMO possível sobre cada decisão técnica para conseguir explicar cada escolha em entrevistas.
 
+### Personas atendidas (dois cenários no mesmo sistema)
+
+O sistema mira **dois públicos com o mesmo modelo de domínio**:
+
+1. **Usuário comum (B2C)** — a pessoa com **um único carro** que só quer gerir as manutenções do próprio veículo (lembrar de troca de óleo, não perder IPVA/seguro/revisão). Esse usuário entra pela parte de **garagem**. A complexidade de spaces/members/roles tem que ficar **invisível** pra ele: ao registrar, ganha um `Space` `GARAGE` padrão automático ("Minha Garagem") e é sempre `OWNER`. Onboarding rápido: cadastrou → adicionou carro → pronto.
+2. **Usuário avançado (B2B)** — donos de várias garagens, oficinas com mecânicos, gestão de equipe com roles.
+
+**Princípio:** o caso simples (1 space, 1 membro OWNER) é apenas um caso particular do complexo. O modelo de domínio já comporta os dois; a diferença é de **UX/defaults**, não de estrutura. Nunca obrigar o usuário de 1 carro a entender o conceito de "espaço" ou "membros".
+
+### Mobile e PWA
+
+O sistema precisa funcionar **plenamente em mobile** — a estratégia é **PWA (Progressive Web App)**: o site instala na tela inicial do celular e roda como app (tela cheia, ícone, offline parcial, push), sem precisar de app store. Ingredientes no front React: Web App Manifest + Service Worker + HTTPS.
+
+**Ordem de construção: desktop-first, mas excelente no mobile.** O público que decide a contratação (recrutadores, tech leads) avalia portfólio no desktop — então a primeira impressão é construída lá. Mas o uso real do app (na garagem/oficina, celular na mão) é mobile, então a responsividade tem que ser impecável. Desktop-first é ordem de prioridade, não desculpa pra mobile capenga.
+
+App nativo é **evolução futura** (não prioridade). Como o backend é API REST pura (contrato JSON), web, PWA e futuro app nativo consomem **a mesma API** sem mudança no backend — a separação front/back já prepara o terreno.
+
 **Regra mais importante de todas:** nunca saia escrevendo código direto. Explique o PORQUÊ de cada decisão, mostre as alternativas existentes, dê referências de estudo. O Isac digita o código — você guia. Ele quer entender tudo, não só copiar.
 
 Sequência de trabalho: **explicar estrutura → Isac entende → Isac cria o arquivo/código → próximo passo**.
@@ -166,6 +183,8 @@ React puro (sem Next.js por enquanto — hosting mais simples).
 Visual inspirado em Test Drive Unlimited: temático de carros, backgrounds personalizados por espaço, cores configuráveis.
 Garagem tem background de garagem, oficina tem background de oficina.
 O contrato entre front e back é o JSON da API — o front pode mudar visual livremente.
+
+**PWA + responsividade:** o front deve ser empacotado como PWA (Web App Manifest + Service Worker), permitindo instalação na tela inicial sem app store. Ordem de construção **desktop-first** (público avaliador = recrutadores no desktop), mas com responsividade **impecável no mobile** (uso real do app). App nativo fica como evolução futura, consumindo a mesma API REST.
 
 ---
 
