@@ -274,3 +274,19 @@ docker exec -it mygarage_db psql -U isac -d mygarage  # conectar ao banco
 - **Ilustração automática**: buscar imagem por marca/modelo/ano via API externa (NHTSA/CarQuery)
 - **IA (Gemini Flash)**: formatação de texto nos registros de manutenção — implementar depois do core
 - **Notificações por email**: fora do escopo inicial; in-app suficiente
+
+---
+
+## Agent skills
+
+### Issue tracker
+
+Issues rastreadas no GitHub (`IsacCostaDev/mygarage`), via CLI `gh`. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Labels padrão (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`). See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Contexto único — `CONTEXT.md` + `docs/adr/` na raiz do repo. See `docs/agents/domain.md`.

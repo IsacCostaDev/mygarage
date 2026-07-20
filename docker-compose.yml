@@ -2,7 +2,7 @@ services:
   db:
     image: postgres:15
     container_name: mygarage_db
-    restarte: unless-stopped
+    restart: unless-stopped
     environment:
       POSTGRES_DB:${POSTGRES_DB}
       POSTGRES-USER:${POSTGRES_USER}
